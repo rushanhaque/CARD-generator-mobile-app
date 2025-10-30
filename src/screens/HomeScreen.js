@@ -13,6 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 import Footer from '../components/Footer';
 import AnimatedCard from '../components/AnimatedCard';
 import FloatingButton from '../components/FloatingButton';
+import { generateRandomCard } from '../data/themes';
 
 const { width } = Dimensions.get('window');
 
@@ -51,11 +52,19 @@ export default function HomeScreen({ navigation }) {
   });
 
   const features = [
-    { icon: 'color-palette', title: 'Multiple Themes', description: '8+ beautiful themes' },
+    { icon: 'color-palette', title: '16 Themes', description: 'Unique color schemes' },
+    { icon: 'document-text', title: '16 Templates', description: 'Every occasion covered' },
     { icon: 'create', title: 'Full Customization', description: 'Colors, fonts & more' },
-    { icon: 'images', title: 'Add Images', description: 'Upload your photos' },
-    { icon: 'download', title: 'Export Options', description: 'JPEG, PDF formats' },
+    { icon: 'shuffle', title: 'Random Generator', description: 'Surprise me feature' },
   ];
+
+  const handleSurpriseMe = () => {
+    const randomCard = generateRandomCard();
+    navigation.navigate('Editor', {
+      template: randomCard.template,
+      theme: randomCard.theme,
+    });
+  };
 
   return (
     <View style={styles.mainContainer}>
@@ -117,6 +126,23 @@ export default function HomeScreen({ navigation }) {
                 <Text style={styles.primaryButtonSubtext}>Start designing now</Text>
               </View>
               <Ionicons name="arrow-forward" size={24} color="rgba(255,255,255,0.8)" />
+            </View>
+          </AnimatedCard>
+
+          <AnimatedCard
+            colors={['#f093fb', '#4facfe']}
+            onPress={handleSurpriseMe}
+            style={styles.surpriseButton}
+          >
+            <View style={styles.buttonContent}>
+              <View style={styles.buttonIconContainer}>
+                <Ionicons name="shuffle" size={32} color="white" />
+              </View>
+              <View style={styles.buttonTextContainer}>
+                <Text style={styles.primaryButtonText}>Surprise Me!</Text>
+                <Text style={styles.primaryButtonSubtext}>Generate random card</Text>
+              </View>
+              <Ionicons name="sparkles" size={24} color="rgba(255,255,255,0.8)" />
             </View>
           </AnimatedCard>
 
@@ -303,6 +329,9 @@ const styles = StyleSheet.create({
   },
   primaryButton: {
     marginTop: 20,
+    marginBottom: 15,
+  },
+  surpriseButton: {
     marginBottom: 30,
   },
   buttonContent: {

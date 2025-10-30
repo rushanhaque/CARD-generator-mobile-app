@@ -121,6 +121,16 @@ export default function EditorScreen({ navigation, route }) {
       hostName: 'Host Name',
       address: 'Address',
       occasion: 'Occasion',
+      brideName: 'Bride Name',
+      company: 'Company',
+      childName: 'Child Name',
+      eventName: 'Event Name',
+      groupName: 'Group Name',
+      year: 'Year',
+      cause: 'Cause',
+      organizer: 'Organizer',
+      artist: 'Artist',
+      ticketInfo: 'Ticket Info',
     };
 
     return (
